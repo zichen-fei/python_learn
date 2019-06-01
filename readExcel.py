@@ -12,21 +12,30 @@ def read_excel():
 
     #根据sheet索引或者名称获取sheet内容
     sheet2 = workbook.sheet_by_index(2) # sheet 索引从0开始
-    sheet2 = workbook.sheet_by_name(u'5.14号-166')
+   # sheet2 = workbook.sheet_by_name(u'5.14号-166')
 
     # sheet的名称,行数,列数
-    print sheet2.name
-    print sheet2.nrows
-    print sheet2.ncols
+    name = sheet2.name
+    nrows = sheet2.nrows
+    ncols = sheet2.ncols
+    print name
+    print ncols
+    print nrows
 
     # 获取整行和整列的值(数组)
     rows = sheet2.row_values(3) # 获取第四行内容
     cols = sheet2.col_values(0) # 获取第一列内容
     
-    for row in rows:
-        print rows
-    for col in cols:
-        print col
+#    for row in rows:
+#        print rows
+#    for col in cols:
+#        print col
+#
+    for i in range(nrows):
+        row = ''
+        for j in range(ncols):
+            row = row + sheet2.row(i)[j].value.encode('utf-8') + ","
+        print row[:-1]
 
     #获取单元格内容
     print sheet2.cell(1, 0).value.encode('utf-8')
